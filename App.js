@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 
-import LoginScreen from '../screens/LoginScreen.js';
+import LoginScreen from './screens/LoginScreen.js';
 
 export default function App() {
 
