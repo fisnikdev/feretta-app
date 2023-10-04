@@ -1,51 +1,73 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
-
+import { Formik } from 'formik';
 import Colors from '../constants/Colors.js';
 
 const LoginScreen = props => {
-
-    const [password, setPassword] = useState ('')
+    const [password, setPassword] = useState('');
     const handlePasswordChange = (text) => {
         setPassword(text);
     };
-    const [text, setText] = useState ('')
+
+    const [text, setText] = useState('');
     const handleTextChange = (inputText) => {
         const formattedText = inputText.replace(/\s/g, '');
         if (formattedText.length <= 6) {
-            setText=(formattedText);
+            setText(formattedText); 
         }
     };
+
     return (
-            <View style={styles.screen}>
-                <View>
-                    <Text style={styles.title}>Kyçu ne llogarinë tuaj:</Text>
-                
-                <View style={styles.inputContainer}>
-                    <Text style={styles.title}>Perdoruesi</Text>
-                    <TextInput 
-                    style={styles.textInputSt}
-                    />
-                
-                <View style={styles.inputContainer}>
-                    <Text style={styles.title}>Fjalekalimi</Text>
-                    <TextInput 
-                    style={styles.textInputSt}
-                    secureTextEntry={true}
-                    value={password}
-                    maxLength={6}
-                    autoCapitalize='none'
-                    onChangeText={handlePasswordChange}
-                    />
+        <View style={styles.screen}>
+            <View>
+                <Text style={styles.title}>Kyçu ne llogarinë tuaj:</Text>
 
-                <View style={styles.buttonContainer}>
-                <Button title='Kycu' onPress={() => {}} />
+                <Formik
+                    initialValues={{ username: '', password: '' }}
+                    onSubmit={(values) => {
+                        
+                        console.log(values);
+                    }}
+                    validate={(values) => {
+                        const errors = {};
+                        if (!values.username) {
+                            errors.username = 'Username is required';
+                        }
+                        if (!values.password) {
+                            errors.password = 'Password is required';
+                        }
+                        return errors;
+                    }}
+                >
+                    {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+                        <View>
+                            <TextInput
+                                style={styles.textInputSt}
+                                onChangeText={handleChange('username')}
+                                onBlur={handleBlur('username')}
+                                value={values.username}
+                                placeholder="Username"
+                            />
+                            {errors.username && <Text style={{ color: 'red' }}>{errors.username}</Text>}
+                            <TextInput
+                                style={styles.textInputSt}
+                                onChangeText={handleChange('password')}
+                                onBlur={handleBlur('password')}
+                                value={values.password}
+                                placeholder="Password"
+                                secureTextEntry
+                            />
+                            {errors.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
+                            <Button title="Kyçu"
+                            onPress={handleSubmit}
+                             />
+                        </View>
+                    )}
+                </Formik>
+            </View>
 
-                </View>
-                </View>
-                </View>
-                </View>
-                </View>
+            
+        </View>
     );
 };
 
@@ -53,15 +75,7 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         padding: 30,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-
-    buttonContainer: {
-    marginTop: '30%',
-    paddingHorizontal: 20,
-    backgroundColor: '#e4e2e0'
-
+        alignItems: 'center'
     },
 
     title: {
@@ -70,23 +84,21 @@ const styles = StyleSheet.create({
     },
 
     inputContainer: {
-        maxWidth: '100%',
+        flex: 1,
         alignItems: 'center',
-        marginTop: '15%',
-        padding: 10,
-        justifyContent: 'center'
+        marginTop: '15%'
     },
 
     textInputSt: {
-        backgroundColor: '#e4e2e0',
+        backgroundColor: 'white',
+        width: 200,
+        padding: 10,
         marginTop: '5%',
-        maxWidth: '100%',
-        paddingHorizontal: 80,
-        paddingVertical: 10,
-        borderRadius: 20,
+        marginBottom: '5%',
+        borderRadius: 10,
         borderColor: Colors.blackJet,
-        borderWidth: 1
-        
+        borderWidth: 0.5
+
     }
 });
 
