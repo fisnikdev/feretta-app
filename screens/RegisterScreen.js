@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import LoginScreen from './LoginScreen.js';
+import LoginScreen from './LoginScreen';
 //Libraria e kycjes
 import { Formik } from 'formik';
 // Ngjyrat
@@ -22,7 +22,7 @@ import { useNavigation } from '@react-navigation/native';
 const RegisterScreen = () => {
     const navigation = useNavigation();
     const handleLoginLink = () => {
-        navigation.navigate('LoginScreen')
+        navigation.navigate('Kyçu')
     };
 
     return (

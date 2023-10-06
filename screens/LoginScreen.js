@@ -8,7 +8,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import RegisterScreen from './RegisterScreen.js';
+import RegisterScreen from './RegisterScreen';
 import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 import Colors from '../constants/Colors.js';
@@ -16,7 +16,7 @@ import Colors from '../constants/Colors.js';
 const LoginScreen = () => {
     const navigation = useNavigation();
     const handleRegisterLink = () => {
-        navigation.navigate('RegisterScreen')
+        navigation.navigate('Regjistrohu')
     };
 
 
