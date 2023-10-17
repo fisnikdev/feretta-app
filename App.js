@@ -3,12 +3,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import 'react-native-gesture-handler';
-import { ApplicationProvider,Layout,Text } from "@ui-kitten/components";
+import { ApplicationProvider, Layout, Text } from "@ui-kitten/components";
 import * as eva from "@eva-design/eva";
-import Produktet from './screens/Produktet.js';
 import Header from './components/Header.js';
 import AppNavigator from './navigator/AppNavigator.js';
-import { default as theme } from "./custom-theme.json"
+import TyScreen from './screens/TyScreen.js';
+import { default as theme } from "./custom-theme.json";
 
 const Stack = createStackNavigator();
 
@@ -16,12 +16,12 @@ export default function App() {
 
   return (
     <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
-    <Layout style={styles.screen}>
-    <Header />
-      <NavigationContainer>
+      <Layout style={styles.screen}>
+        <Header />
+        <NavigationContainer>
         <AppNavigator />
       </NavigationContainer>
-    </Layout>
+      </Layout>
     </ApplicationProvider>
   );
 
@@ -30,6 +30,6 @@ export default function App() {
 const styles = StyleSheet.create({
 
   screen: {
-    flex: 1,
+    flex: 1
   }
 });

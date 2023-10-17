@@ -1,28 +1,33 @@
 import React, { useState } from 'react';
 import {
-    View,
-    Text,
     StyleSheet,
-    TextInput,
-    Button,
     TouchableOpacity
 } from 'react-native';
-
+import { Layout, Text, Input, Button } from "@ui-kitten/components";
+import * as eva from "@eva-design/eva"
+import { default as theme } from "../custom-theme.json";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import RegisterScreen from './RegisterScreen';
 import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 import Colors from '../constants/Colors.js';
+import Produktet from './Produktet'
 
 const LoginScreen = () => {
     const navigation = useNavigation();
     const handleRegisterLink = () => {
         navigation.navigate('Regjistrohu')
     };
+    const switchToProduktet = () => {
+        navigation.navigate('Produktet')
+    };
+
+    const alphanumericRegex = /^[a-zA-Z0-9]+$/;
 
 
     return (
-        <View style={styles.screen}>
-            <View>
+        <Layout style={styles.screen}>
+            <Layout>
                 <Text style={styles.title}>Kyçu ne llogarinë tuaj:</Text>
 
                 <Formik
@@ -35,6 +40,8 @@ const LoginScreen = () => {
                         const errors = {};
                         if (!values.username) {
                             errors.username = 'Perdoruesi eshte i domosdoshem';
+                        } else if (!alphanumericRegex.test(values.username)) {
+                            errors.username = 'Lejohen vetem shkronja dhe numra';
                         }
                         if (!values.password) {
                             errors.password = 'Fjalekalimi eshte i domosdoshem';
@@ -43,60 +50,61 @@ const LoginScreen = () => {
                     }}
                 >
                     {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
-                        <View>
-                            <TextInput
+                        <Layout>
+                            <Input
                                 style={styles.textInputSt}
                                 onChangeText={handleChange('username')}
                                 onBlur={handleBlur('username')}
                                 value={values.username}
                                 placeholder="Perdoruesi"
+                                maxLength={9}
                             />
                             {touched.username && errors.username && <Text style={{ color: 'red' }}>{errors.username}</Text>}
-                            <TextInput
+                            <Input
                                 style={styles.textInputSt}
                                 onChangeText={handleChange('password')}
                                 onBlur={handleBlur('password')}
                                 value={values.password}
                                 placeholder="Fjalekalimi"
+                                maxLength={9}
                                 secureTextEntry
                             />
                             {touched.password && errors.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
-                            <Button title="Kyçu"
-                                onPress={handleSubmit}
-                            />
+                            <Button onPress={switchToProduktet} size="medium">Kyçu</Button>
                             <TouchableOpacity onPress={handleRegisterLink}>
-                                <Text style={{ fontWeight: 'bold' }}>Nuk ke llogari te hapur? Regjistrohu</Text>
+                                <Text category='label' style={{ marginTop: 20 }}>Nuk ke llogari te hapur? Regjistrohu</Text>
                             </TouchableOpacity>
-                        </View>
+                        </Layout>
                     )}
                 </Formik>
 
 
-            </View>
+            </Layout>
 
 
-        </View>
+        </Layout>
     );
 };
 
 const styles = StyleSheet.create({
     screen: {
-        flex: 1,
+        flex: 2,
         padding: 20,
-        alignItems: 'center',
+        alignItems: 'center'
     },
 
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginLeft: '5%'
+        marginLeft: 10,
+        marginBottom: 10
     },
 
     inputContainer: {
         flex: 1,
         alignItems: 'center',
-        marginTop: '15%',
-        marginLeft: '10%'
+        marginTop: 20,
+        marginLeft: 10
     },
 
     textInputSt: {
@@ -104,9 +112,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: 200,
         padding: 10,
-        marginTop: '5%',
-        marginBottom: '5%',
-        marginLeft: '10%',
+        marginLeft: 10,
         borderRadius: 10,
         borderColor: Colors.blackJet,
         borderWidth: 0.5

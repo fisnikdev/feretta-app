@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { Formik } from 'formik';
 
 
-const ForgotPasswordScreen = () => {
+const ForgotPassScreen = () => {
     const handleForgotPassword = (values) => {
 
         console.log('Forgot Password Form Values:', values);
