@@ -1,10 +1,12 @@
 import React from "react";
-import { Button, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import * as eva from "@eva-design/eva";
 import { default as theme } from "../custom-theme.json";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
-import { Layout, Text, Icon, IconRegistry, Card } from "@ui-kitten/components";
+import { Layout, Text, Icon, IconRegistry, Card, Button } from "@ui-kitten/components";
 import Header from "../components/Header";
+import Produktet from "./Produktet";
+import { useNavigation } from "@react-navigation/native";
 
 
 const Checkmark = (props) => {
@@ -12,16 +14,22 @@ const Checkmark = (props) => {
 };
 
 const TyScreen = () => {
+
+const navigation = useNavigation();
+const handleMainLink = () => {
+    navigation.navigate('Produktet')
+};
+
     return (
         <>
             <IconRegistry icons={EvaIconsPack} />
             <Layout level='1' style={styles.screen}>
-                <Header />
+                
                 <Card style={styles.cardStyling} status='primary' accessoryLeft={(props) => (
     <Checkmark {...props} width={100} height={100} />)}>
                     <Text category="label" style={{alignSelf:'center'}}>#kodiporosis</Text>
                     <Text category="h5" style={styles.text}>Porosia u be me sukses.</Text>
-                    <Text category="h5" style={{marginLeft: 40}}>Ju Faleminderit!</Text>
+                    <Button onPress={handleMainLink} accessoryLeft={Checkmark}>Rikthehu</Button>
                 </Card>
             </Layout>
         </>

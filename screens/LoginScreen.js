@@ -96,23 +96,18 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginLeft: 10,
-        marginBottom: 10
+        padding: 10
     },
 
     inputContainer: {
-        flex: 1,
-        alignItems: 'center',
-        marginTop: 20,
-        marginLeft: 10
+        flex: 2,
+        alignItems: 'center'
     },
 
     textInputSt: {
         backgroundColor: 'white',
         alignItems: 'center',
-        width: 200,
         padding: 10,
-        marginLeft: 10,
         borderRadius: 10,
         borderColor: Colors.blackJet,
         borderWidth: 0.5

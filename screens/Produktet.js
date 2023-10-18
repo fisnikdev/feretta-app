@@ -4,6 +4,8 @@ import * as eva from "@eva-design/eva";
 import { Text, Layout, Card, Icon, IconRegistry, Button, ButtonGroup, Input } from "@ui-kitten/components";
 import { default as theme } from "../custom-theme.json";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import TyScreen from "./TyScreen";
+import { useNavigation } from "@react-navigation/native";
 
 const Header = () => {
     return (
@@ -35,10 +37,10 @@ const Produktet = () => {
     };
 
     const hasValueGreaterThanZero = values.some((value) => parseInt(value) > 0);
-
+ 
+    const navigation = useNavigation();
     const handleSubmit = () => {
-        
-        console.log("Submitted!");
+        navigation.navigate('TyScreen')
     };
 
     return (
@@ -75,7 +77,7 @@ const Produktet = () => {
                         </Card>
                     ))}
                     {hasValueGreaterThanZero && (
-                        <Button onPress={handleSubmit} status="primary">
+                        <Button style={{marginBottom: 20}} onPress={handleSubmit} status="primary">
                             Porosit
                         </Button>
                     )}
