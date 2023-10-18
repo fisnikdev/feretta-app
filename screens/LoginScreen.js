@@ -59,7 +59,7 @@ const LoginScreen = () => {
                                 placeholder="Perdoruesi"
                                 maxLength={9}
                             />
-                            {touched.username && errors.username && <Text style={{ color: 'red' }}>{errors.username}</Text>}
+                            {touched.username && errors.username && <Text style={{ color: 'red', maxWidth: 200 }}>{errors.username}</Text>}
                             <Input
                                 style={styles.textInputSt}
                                 onChangeText={handleChange('password')}
