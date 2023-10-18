@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import {
-    View,
     StyleSheet,
-    Text,
-    TextInput,
-    Button,
     TouchableOpacity
 } from 'react-native';
-
+import { Layout, Text, Input, Button, Icon, IconRegistry } from "@ui-kitten/components"
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import LoginScreen from './LoginScreen';
+
 //Libraria e kycjes
 import { Formik } from 'formik';
+
 // Ngjyrat
 import Colors from '../constants/Colors.js';
-
 
 // Navigacioni
 import { useNavigation } from '@react-navigation/native';
@@ -25,10 +23,27 @@ const RegisterScreen = () => {
         navigation.navigate('Kyçu')
     };
 
-    return (
+    const RegIcon = (props) => {
+        return <Icon name="person-add" {...props} />
+    };
+    
+    const UserIcon = (props) => {
+        return <Icon name="person" {...props} />
+    };
 
-        <View style={styles.screen}>
-            <View style={styles.inputContainer}>
+    const PassIcon = (props) => {
+        return <Icon name='eye' {...props} />
+    };
+
+    const EmailIcon = (props) => {
+        return <Icon name='at' {...props} />
+    }
+
+    return (
+        <>
+        <IconRegistry icons={EvaIconsPack} />
+        <Layout style={styles.screen}>
+            <Layout style={styles.inputContainer}>
                 <Text style={styles.title}>Regjistrohu:</Text>
 
                 <Formik
@@ -64,52 +79,55 @@ const RegisterScreen = () => {
                     }}
                 >
                     {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
-                        <View>
-                            <TextInput
+                        <Layout>
+                            <Input
                                 style={styles.textInputSt}
                                 onChangeText={handleChange('username')}
                                 onBlur={handleBlur('username')}
                                 value={values.username}
                                 placeholder="Perdoruesi"
+                                accessoryLeft={UserIcon}
                             />
                             {touched.username && errors.username && <Text style={{ color: 'red' }}>{errors.username}</Text>}
-                            <TextInput
+                            <Input
                                 style={styles.textInputSt}
                                 onChangeText={handleChange('password')}
                                 onBlur={handleBlur('password')}
                                 value={values.password}
                                 placeholder="Fjalekalimi"
                                 secureTextEntry
+                                accessoryLeft={PassIcon}
                             />
                             {touched.password && errors.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
-                            <TextInput
+                            <Input
                                 style={styles.textInputSt}
                                 onChangeText={handleChange('confirmPassword')}
                                 onBlur={handleBlur('confirmPassword')}
                                 value={values.confirmPassword}
                                 placeholder="Konfirmo Fjalekalimin"
                                 secureTextEntry
+                                accessoryLeft={PassIcon}
                             />
                             {touched.confirmPassword && errors.confirmPassword && <Text style={{ color: 'red' }}>{errors.confirmPassword}</Text>}
-                            <TextInput
+                            <Input
                                 style={styles.textInputSt}
                                 onChangeText={handleChange('email')}
                                 onBlur={handleBlur('email')}
                                 value={values.email}
                                 placeholder="Email"
+                                accessoryLeft={EmailIcon}
                             />
                             {touched.email && errors.email && <Text style={{ color: 'red' }}>{errors.email}</Text>}
-                            <Button title="Regjistrohu"
-                                onPress={handleSubmit}
-                            />
+                            <Button onPress={handleSubmit} accessoryLeft={RegIcon}>Regjistrohu</Button>
                             <TouchableOpacity onPress={handleLoginLink}>
                                 <Text style={{ fontWeight: 'bold', marginLeft: '5%' }}>Ke llogari te hapur? Kyçu ketu!</Text>
                             </TouchableOpacity>
-                        </View>
+                        </Layout>
                     )}
                 </Formik>
-            </View>
-        </View>
+            </Layout>
+        </Layout>
+        </>
     )
 };
 
@@ -118,30 +136,22 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 30,
         alignItems: 'center',
-        marginRight: '10%'
     },
 
     title: {
         fontSize: 20,
-        fontWeight: 'bold',
-        marginLeft: '10%'
+        fontWeight: 'bold'
     },
 
     inputContainer: {
         flex: 1,
         alignItems: 'center',
-        marginTop: '15%',
-        marginLeft: '10%'
     },
 
     textInputSt: {
         backgroundColor: 'white',
         alignItems: 'center',
-        width: 200,
         padding: 10,
-        marginTop: '5%',
-        marginBottom: '5%',
-        marginLeft: '10%',
         borderRadius: 10,
         borderColor: Colors.blackJet,
         borderWidth: 0.5

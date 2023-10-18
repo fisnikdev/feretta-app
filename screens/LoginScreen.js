@@ -3,7 +3,7 @@ import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
-import { Layout, Text, Input, Button } from "@ui-kitten/components";
+import { Layout, Text, Input, Button, Icon, IconRegistry } from "@ui-kitten/components";
 import * as eva from "@eva-design/eva"
 import { default as theme } from "../custom-theme.json";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
@@ -24,8 +24,21 @@ const LoginScreen = () => {
 
     const alphanumericRegex = /^[a-zA-Z0-9]+$/;
 
+    const UserIcon = (props) => {
+        return <Icon name='person' {...props} />
+    };
+
+    const LoginIcon = (props) => {
+        return <Icon name='log-in' {...props} />
+    }
+
+    const PassIcon = (props) => {
+        return <Icon name='eye' {...props} />
+    }
 
     return (
+        <>
+        <IconRegistry icons={EvaIconsPack} />
         <Layout style={styles.screen}>
             <Layout>
                 <Text style={styles.title}>Kyçu ne llogarinë tuaj:</Text>
@@ -58,6 +71,7 @@ const LoginScreen = () => {
                                 value={values.username}
                                 placeholder="Perdoruesi"
                                 maxLength={9}
+                                accessoryLeft={UserIcon}
                             />
                             {touched.username && errors.username && <Text style={{ color: 'red', maxWidth: 200 }}>{errors.username}</Text>}
                             <Input
@@ -68,9 +82,10 @@ const LoginScreen = () => {
                                 placeholder="Fjalekalimi"
                                 maxLength={9}
                                 secureTextEntry
+                                accessoryLeft={PassIcon}
                             />
                             {touched.password && errors.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
-                            <Button onPress={switchToProduktet} size="medium">Kyçu</Button>
+                            <Button onPress={switchToProduktet} size="medium" accessoryLeft={LoginIcon}>Kyçu</Button>
                             <TouchableOpacity onPress={handleRegisterLink}>
                                 <Text category='label' style={{ marginTop: 20 }}>Nuk ke llogari te hapur? Regjistrohu</Text>
                             </TouchableOpacity>
@@ -83,6 +98,7 @@ const LoginScreen = () => {
 
 
         </Layout>
+        </>
     );
 };
 

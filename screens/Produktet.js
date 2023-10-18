@@ -37,11 +37,15 @@ const Produktet = () => {
     };
 
     const hasValueGreaterThanZero = values.some((value) => parseInt(value) > 0);
- 
+
     const navigation = useNavigation();
     const handleSubmit = () => {
         navigation.navigate('TyScreen')
     };
+
+    const BagIcon = (props) => {
+        return <Icon name='shopping-bag' {...props} />
+    }
 
     return (
         <ScrollView style={{ flex: 1 }}>
@@ -77,7 +81,7 @@ const Produktet = () => {
                         </Card>
                     ))}
                     {hasValueGreaterThanZero && (
-                        <Button style={{marginBottom: 20}} onPress={handleSubmit} status="primary">
+                        <Button style={{ marginBottom: 20 }} onPress={handleSubmit} accessoryLeft={BagIcon} status="primary">
                             Porosit
                         </Button>
                     )}
