@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     StyleSheet,
     TouchableOpacity
 } from 'react-native';
 import { Layout, Text, Input, Button, Icon, IconRegistry } from "@ui-kitten/components"
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
-import LoginScreen from './LoginScreen';
 
 //Libraria e kycjes
 import { Formik } from 'formik';
@@ -86,6 +85,7 @@ const RegisterScreen = () => {
                                 onBlur={handleBlur('username')}
                                 value={values.username}
                                 placeholder="Perdoruesi"
+                                maxLength={9}
                                 accessoryLeft={UserIcon}
                             />
                             {touched.username && errors.username && <Text style={{ color: 'red' }}>{errors.username}</Text>}
@@ -95,6 +95,7 @@ const RegisterScreen = () => {
                                 onBlur={handleBlur('password')}
                                 value={values.password}
                                 placeholder="Fjalekalimi"
+                                maxLength={9}
                                 secureTextEntry
                                 accessoryLeft={PassIcon}
                             />
@@ -105,6 +106,7 @@ const RegisterScreen = () => {
                                 onBlur={handleBlur('confirmPassword')}
                                 value={values.confirmPassword}
                                 placeholder="Konfirmo Fjalekalimin"
+                                maxLength={9}
                                 secureTextEntry
                                 accessoryLeft={PassIcon}
                             />
@@ -120,7 +122,7 @@ const RegisterScreen = () => {
                             {touched.email && errors.email && <Text style={{ color: 'red' }}>{errors.email}</Text>}
                             <Button onPress={handleSubmit} accessoryLeft={RegIcon}>Regjistrohu</Button>
                             <TouchableOpacity onPress={handleLoginLink}>
-                                <Text style={{ fontWeight: 'bold', marginLeft: '5%' }}>Ke llogari te hapur? Kyçu ketu!</Text>
+                                <Text style={{ fontWeight: 'bold', marginLeft: 10, marginTop: 10 }}>Ke llogari te hapur? Kyçu ketu!</Text>
                             </TouchableOpacity>
                         </Layout>
                     )}

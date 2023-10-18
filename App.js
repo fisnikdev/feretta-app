@@ -19,8 +19,8 @@ export default function App() {
       <Layout style={styles.screen}>
         <Header />
         <NavigationContainer>
-        <AppNavigator />
-      </NavigationContainer>
+          <AppNavigator />
+        </NavigationContainer>
       </Layout>
     </ApplicationProvider>
   );

@@ -4,7 +4,6 @@ import * as eva from "@eva-design/eva";
 import { Text, Layout, Card, Icon, IconRegistry, Button, ButtonGroup, Input } from "@ui-kitten/components";
 import { default as theme } from "../custom-theme.json";
 import { EvaIconsPack } from "@ui-kitten/eva-icons";
-import TyScreen from "./TyScreen";
 import { useNavigation } from "@react-navigation/native";
 
 const Header = () => {
@@ -63,7 +62,7 @@ const Produktet = () => {
                             header={Header}
                         >
                             <Image source={require('../images/image.jpg')} style={{ width: 200, height: 150 }} />
-                            <Text category="label">5 KG - 4.00$</Text>
+                            <Text category="p2">5 KG - 4.00$</Text>
                             <ButtonGroup style={styles.buttonContainer} status='primary'>
                                 <Button onPress={() => handleIncrement(index)}>+</Button>
                                 <Button onPress={() => handleDecrement(index)}>-</Button>
@@ -108,7 +107,7 @@ const styles = StyleSheet.create({
 
     inputStyle: {
         padding: 2,
-        maxWidth: 50,
+        maxWidth: 55,
         marginLeft: 50
     },
 
@@ -126,7 +125,8 @@ const styles = StyleSheet.create({
 
     smalltextSt: {
         marginLeft: 50
-    }
+    },
+
 });
 
 export default Produktet;

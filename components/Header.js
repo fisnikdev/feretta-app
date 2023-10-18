@@ -10,16 +10,17 @@ const Header = props => {
         <View style={styles.header}>
             <Text style={styles.headerTitle}>{props.title}</Text>
         </View>
-)};
+    )
+};
 
 const styles = StyleSheet.create({
     header: {
-       width: '100%',
-       height: 40,
-       padding: 10,
-       backgroundColor: Colors.feretta,
-       alignItems: 'center',
-       justifyContent: 'center'
+        maxWidth: '100%',
+        height: 60,
+        padding: 10,
+        backgroundColor: Colors.feretta,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
 
     headerTitle: {
