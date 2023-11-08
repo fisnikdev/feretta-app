@@ -1,7 +1,8 @@
 import React from 'react';
 import {
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    ImageBackground
 } from 'react-native';
 import { Layout, Text, Input, Button, Icon, IconRegistry } from "@ui-kitten/components";
 import * as eva from "@eva-design/eva"
@@ -10,8 +11,12 @@ import { EvaIconsPack } from "@ui-kitten/eva-icons";
 import { Formik } from 'formik';
 import { useNavigation } from '@react-navigation/native';
 import Colors from '../constants/Colors.js';
+import UserIcon from '../icons/UserIcon.js'
+import PassIcon from '../icons/PassIcon.js'
+import LoginIcon from '../icons/LoginIcon';
 
 const LoginScreen = () => {
+
     const navigation = useNavigation();
 
     const handleRegisterLink = () => {
@@ -26,18 +31,6 @@ const LoginScreen = () => {
     };
 
     const alphanumericRegex = /^[a-zA-Z0-9]+$/;
-
-    const UserIcon = (props) => {
-        return <Icon name='person' {...props} />
-    };
-
-    const LoginIcon = (props) => {
-        return <Icon name='log-in' {...props} />
-    }
-
-    const PassIcon = (props) => {
-        return <Icon name='eye' {...props} />
-    }
 
     return (
         <>
@@ -88,13 +81,17 @@ const LoginScreen = () => {
                                     accessoryLeft={PassIcon}
                                 />
                                 {touched.password && errors.password && <Text style={{ color: 'red' }}>{errors.password}</Text>}
-                                <Button onPress={switchToProduktet} size="medium" accessoryLeft={LoginIcon}>Kyçu</Button>
-                                <TouchableOpacity onPress={handleRegisterLink}>
-                                    <Text category='label' style={{ marginTop: 20 }}>Nuk ke llogari te hapur? Regjistrohu</Text>
-                                </TouchableOpacity>
                                 <TouchableOpacity onPress={forgotPass}>
-                                    <Text category='label' style={{ marginTop: 20 }}>Keni harruar fjalekalimin?</Text>
+                                    <Text category='s1' style={{ marginBottom: 20 }} appearance='hint'>Keni harruar fjalekalimin?</Text>
                                 </TouchableOpacity>
+                                <Button
+                                    onPress={switchToProduktet}
+                                    size="medium"
+                                    accessoryLeft={LoginIcon}>Kyçu</Button>
+                                <TouchableOpacity onPress={handleRegisterLink}>
+                                    <Text category='s1' style={{ marginTop: 10, width: 200 }} appearance='hint'>Nuk ke llogari te hapur? Regjistrohu</Text>
+                                </TouchableOpacity>
+                                
                             </Layout>
                         )}
                     </Formik>
@@ -117,7 +114,6 @@ const styles = StyleSheet.create({
 
     title: {
         fontSize: 20,
-        fontWeight: 'bold',
         padding: 10
     },
 
@@ -139,7 +135,10 @@ const styles = StyleSheet.create({
     signupStyle: {
         fontWeight: 'bold',
         color: Colors.blackJet
-    }
+    },
+
+
+
 });
 
 export default LoginScreen;

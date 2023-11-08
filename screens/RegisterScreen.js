@@ -5,6 +5,10 @@ import {
 } from 'react-native';
 import { Layout, Text, Input, Button, Icon, IconRegistry } from "@ui-kitten/components"
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import PassIcon from '../icons/PassIcon.js'
+import EmailIcon from '../icons/EmailIcon.js'
+import RegIcon from '../icons/RegIcon.js'
+import UserIcon from '../icons/UserIcon.js'
 
 //Libraria e kycjes
 import { Formik } from 'formik';
@@ -22,21 +26,6 @@ const RegisterScreen = () => {
         navigation.navigate('Kyçu')
     };
 
-    const RegIcon = (props) => {
-        return <Icon name="person-add" {...props} />
-    };
-    
-    const UserIcon = (props) => {
-        return <Icon name="person" {...props} />
-    };
-
-    const PassIcon = (props) => {
-        return <Icon name='eye' {...props} />
-    };
-
-    const EmailIcon = (props) => {
-        return <Icon name='at' {...props} />
-    }
 
     return (
         <>
@@ -122,7 +111,7 @@ const RegisterScreen = () => {
                             {touched.email && errors.email && <Text style={{ color: 'red' }}>{errors.email}</Text>}
                             <Button onPress={handleSubmit} accessoryLeft={RegIcon}>Regjistrohu</Button>
                             <TouchableOpacity onPress={handleLoginLink}>
-                                <Text style={{ fontWeight: 'bold', marginLeft: 10, marginTop: 10 }}>Ke llogari te hapur? Kyçu ketu!</Text>
+                                <Text style={{ fontWeight: 'bold', marginLeft: 25, marginTop: 10 }} appearance='hint'>Ke llogari te hapur? Kyçu</Text>
                             </TouchableOpacity>
                         </Layout>
                     )}
@@ -142,7 +131,7 @@ const styles = StyleSheet.create({
 
     title: {
         fontSize: 20,
-        fontWeight: 'bold'
+        padding: 10
     },
 
     inputContainer: {

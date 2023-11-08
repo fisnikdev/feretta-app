@@ -20,6 +20,10 @@ const ForgotPassScreen = () => {
         return <Icon name='link' {...props} />
     }
 
+    const EmailIcon = (props) => {
+        return <Icon name='at' {...props} />
+    }
+
     return (
         <>
         <IconRegistry icons={EvaIconsPack} />
@@ -37,6 +41,7 @@ const ForgotPassScreen = () => {
                             onBlur={handleBlur('email')}
                             value={values.email}
                             placeholder="Email"
+                            accessoryLeft={EmailIcon}
                         />
                         <Button onPress={handleLoginDirect} accessoryLeft={linkIcon}>Dergo Linkun</Button>
                     </Layout>
